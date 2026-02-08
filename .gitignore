@@ -20,3 +20,62 @@ __pycache__
 
 #macOS local dir meta file
 .DS_Store
+
+# ML/AI specific
+# Model files (large binaries)
+*.bin
+*.safetensors
+*.gguf
+*.pth
+*.pt
+*.ckpt
+*.h5
+*.pb
+models/*.bin
+models/*.safetensors
+models/*/
+
+# Data files
+data/raw/*.txt
+data/raw/*.pdf
+data/raw/*.docx
+data/processed/*.jsonl
+data/processed/*.json
+*.csv
+*.parquet
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs and outputs
+logs/
+*.log
+wandb/
+runs/
+outputs/
+checkpoints/
+
+# Training artifacts
+*.cache
+.cache/
+
+# HuggingFace cache
+.huggingface/
+transformers_cache/
+
+# Unsloth specific
+unsloth_cache/

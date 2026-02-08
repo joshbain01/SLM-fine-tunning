@@ -1,0 +1,36 @@
+# Core ML Libraries
+torch>=2.1.0
+transformers>=4.36.0
+datasets>=2.14.0
+accelerate>=0.25.0
+peft>=0.7.0
+
+# Unsloth for fast training
+unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git
+
+# Quantization and optimization
+bitsandbytes>=0.41.0
+scipy
+
+# Data processing
+pandas>=2.0.0
+numpy>=1.24.0
+tqdm>=4.65.0
+
+# Configuration and logging
+pyyaml>=6.0
+wandb>=0.15.0
+tensorboard>=2.14.0
+
+# Utilities
+sentencepiece>=0.1.99
+protobuf>=3.20.0
+einops>=0.7.0
+
+# Testing (optional)
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Notebook support
+jupyter>=1.0.0
+ipywidgets>=8.1.0
