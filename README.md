@@ -51,7 +51,7 @@ python src/train.py --config configs/llama_3_2_3b.yaml
 
 3. **Run inference**:
 ```bash
-python src/inference.py --model models/finetuned_model --prompt "Explain CP delegation procedures"
+python src/inference.py --model models/llama-3.2-3b-atp_merged --prompt "Explain CP delegation procedures"
 ```
 
 ## 📁 Project Structure
