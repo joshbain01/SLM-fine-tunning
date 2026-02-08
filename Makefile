@@ -26,11 +26,11 @@ inference: ## Run interactive inference (requires MODEL variable)
 test: ## Run tests
 	python -m pytest tests/ -v
 
-format: ## Format code with black
-	black src/ tests/
+format: ## Format code with black (requires 'black' to be installed in the active Python environment)
+	python -m black src/ tests/
 
-lint: ## Lint code with flake8
-	flake8 src/ tests/ --max-line-length=100
+lint: ## Lint code with flake8 (requires 'flake8' to be installed in the active Python environment)
+	python -m flake8 src/ tests/ --max-line-length=100
 
 clean: ## Clean generated files
 	find . -type d -name __pycache__ -exec rm -rf {} +
