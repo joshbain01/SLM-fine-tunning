@@ -404,9 +404,9 @@ print(f"Throughput: {tokens_per_second:.2f} tokens/s")
 
 ## Next Steps
 
-- [Evaluation Guide](evaluation.md)
-- [API Integration](api.md)
-- [Monitoring Setup](monitoring.md)
+- Evaluation guide
+- API integration
+- Monitoring setup
 
 ## Resources
 
