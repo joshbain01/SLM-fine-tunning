@@ -1,0 +1,57 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project specific
+models/*
+!models/.gitkeep
+data/raw/*
+data/processed/*
+logs/
+outputs/
+checkpoints/
+*.log
+
+# Jupyter
+.ipynb_checkpoints
+
+# Cache
+.cache/
+*.cache
+
+# Documentation (already in image)
+docs/
+*.md
+!README.md
+
+# CI/CD
+.github/
+.mergify.yml
+
+# Tests
+tests/
+pytest.ini
+.pytest_cache
+
+# Misc
+.DS_Store
+*.bak
+tmp/

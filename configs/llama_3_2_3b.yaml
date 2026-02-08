@@ -1,0 +1,87 @@
+# Llama 3.2 3B Fine-tuning Configuration for ATP 6-0.5
+
+# Model Configuration
+model:
+  name: "unsloth/Llama-3.2-3B-Instruct"  # Unsloth optimized model
+  max_seq_length: 2048                    # Maximum sequence length
+  load_in_4bit: true                      # Enable 4-bit quantization
+  dtype: "auto"                           # Automatic dtype selection (float16/bfloat16)
+
+# LoRA Configuration (QLoRA)
+lora:
+  r: 16                                   # LoRA rank (higher = more parameters)
+  lora_alpha: 16                          # LoRA alpha (scaling factor)
+  lora_dropout: 0.0                       # Dropout probability
+  bias: "none"                            # Bias type
+  target_modules:                         # Modules to apply LoRA
+    - "q_proj"
+    - "k_proj"
+    - "v_proj"
+    - "o_proj"
+    - "gate_proj"
+    - "up_proj"
+    - "down_proj"
+  use_gradient_checkpointing: true        # Save memory with gradient checkpointing
+  use_rslora: false                       # Rank-stabilized LoRA
+  use_dora: false                         # DoRA (Weight-Decomposed Low-Rank Adaptation)
+
+# Training Configuration
+training:
+  output_dir: "./models/llama-3.2-3b-atp"
+  num_train_epochs: 3
+  per_device_train_batch_size: 2
+  gradient_accumulation_steps: 4          # Effective batch size = 2 * 4 = 8
+  warmup_steps: 10
+  learning_rate: 2.0e-4
+  fp16: false                             # Use bfloat16 instead for stability
+  bf16: true
+  logging_steps: 10
+  save_strategy: "epoch"
+  save_total_limit: 3
+  optim: "adamw_8bit"                     # 8-bit Adam optimizer
+  weight_decay: 0.01
+  lr_scheduler_type: "linear"
+  seed: 42
+  
+  # Memory optimization
+  max_grad_norm: 1.0
+  group_by_length: true                   # Group sequences by length
+  
+  # Logging and evaluation
+  report_to: "tensorboard"                # Can change to "wandb" if needed
+  logging_dir: "./logs"
+  evaluation_strategy: "epoch"
+  
+# Data Configuration
+data:
+  train_file: "data/processed/train.jsonl"
+  eval_file: "data/processed/eval.jsonl"
+  test_file: "data/processed/test.jsonl"
+  prompt_template: |
+    ### Instruction:
+    You are an expert on ATP 6-0.5 (Mission Command). Answer the following question based on the manual.
+    
+    ### Question:
+    {input}
+    
+    ### Answer:
+    {output}
+  max_length: 2048
+  train_split: 0.8                        # 80% train, 10% eval, 10% test
+  eval_split: 0.1
+  
+# Inference Configuration
+inference:
+  max_new_tokens: 512
+  temperature: 0.7
+  top_p: 0.9
+  top_k: 50
+  repetition_penalty: 1.1
+  do_sample: true
+
+# Edge Deployment Configuration
+edge:
+  quantization_method: "q4_k_m"          # GGUF quantization for edge
+  context_length: 2048
+  gpu_layers: 0                           # CPU-only for edge devices
+  threads: 4                              # CPU threads for inference
