@@ -273,8 +273,8 @@ def compute_metrics(eval_pred):
 ## Next Steps
 
 After training:
-1. [Test inference](inference.md)
-2. [Evaluate performance](evaluation.md)
+1. [Test inference](../src/inference.py)
+2. [Evaluate performance](deployment.md)
 3. [Deploy to edge](deployment.md)
 
 ## Resources
