@@ -1,0 +1,11 @@
+name: Run test jobs
+on:
+  pull_request:
+
+concurrency:
+  group: test-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    uses: MetroStar/actions-workflows/.github/workflows/test.yml@0054f1b21931641f08f755c8115375b8099f7f6b
